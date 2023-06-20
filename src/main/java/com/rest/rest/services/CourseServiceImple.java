@@ -1,6 +1,7 @@
 package com.rest.rest.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +20,9 @@ public class CourseServiceImple implements MyServices {
 		return courseDao.findAll();
 	}
 	@Override
-	public Course getCourse(long courseId) {
+	public Optional getCourse(long courseId) {
 		// TODO Auto-generated method stub
-		return courseDao.getOne(courseId);
+		return courseDao.findById(courseId);
 	}
 	@Override
 	public Course addCourse(Course course) {
@@ -36,10 +37,10 @@ public class CourseServiceImple implements MyServices {
 		return course;
 	}
 	@Override
-	public void deleteCourse(long parseLong) {
+	public Optional deleteCourse(long parseLong) {
 		// TODO Auto-generated method stub
-		Course entity = courseDao.getOne(parseLong);
-		courseDao.delete(entity);
+		return courseDao.findById(parseLong);
+		
 		
 	}
 	
